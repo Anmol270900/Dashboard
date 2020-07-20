@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         width: 3,
         backgroundColor: '#DDE2FF',
         position: 'absolute',
-        left: 0
+        left: 20
     },
     activeContainer: {
         backgroundColor: 'rgba(221,226,255, 0.08)'
