@@ -63,16 +63,17 @@ function ContentComponent() {
                     </Row>
             </Row>
             <br /><br />
+            <div className={css(styles.todayTrends)}>
+                    <TodayTrendsComponent />
+            </div>
+            <br /><br />
             <Row className={css(styles.cardsContainer)} wrap flexGrow={1} horizontal="space-between" breakpoints={{ 768: 'column' }}>
                     <Row className={css(styles.cardRow)} wrap flexGrow={1} horizontal="space-between" breakpoints={{ 384: 'column' }}>
                         <ColumnChart />   
                         <LineChart />   
                     </Row>
             </Row>
-            <br /><br />
-            <div className={css(styles.todayTrends)}>
-                    <TodayTrendsComponent />
-            </div>
+            
             <br /><br />
             <Row className={css(styles.cardsContainer)} wrap flexGrow={1} horizontal="space-between" breakpoints={{ 768: 'column' }}>
 

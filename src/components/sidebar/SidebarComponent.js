@@ -72,15 +72,15 @@ const styles = StyleSheet.create({
 });
 
 function SidebarComponent({ onChange, selectedItem }) {
-    const [expanded, setExpanded] = useState(false);
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+     const [expanded, setExpanded] = useState(false);
+    // const [isMobile, setIsMobile] = useState(window.innerWidth <= 768 || window.innerWidth >= 768);
     const input1 = useRef(null);
 
     const [, updateState] = React.useState();
     const forceUpdate = useCallback(() => updateState({}), []);
 
     useEffect(() => {
-        setIsMobile(window.innerWidth <= 768);
+        //setIsMobile(window.innerWidth <= 768 || window.innerWidth >= 768);
         forceUpdate();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [window.innerWidth]);
@@ -104,25 +104,16 @@ function SidebarComponent({ onChange, selectedItem }) {
         <div style={{ position: 'relative' }}>
             <Row
                 componentRef={element => (input1.current = element)}
-                className={css(styles.mainContainer)}
-                breakpoints={{
-                    768: css(
-                        styles.mainContainerMobile,
-                        expanded && styles.mainContainerExpanded
-                    )
-                }}
+                className={css(styles.mainContainer, expanded && styles.mainContainerExpanded)}
+               
             >
-                {isMobile && !expanded && renderBurger()}
+                {!expanded && renderBurger()}
                 <Column
-                    className={css(styles.container)}
-                    breakpoints={{
-                        768: css(
-                            styles.containerMobile,
-                            expanded ? styles.show : styles.hide
-                        )
-                    }}
+                    className={css(styles.containerMobile,
+                        expanded ? styles.show : styles.hide)}
+                    
                 >
-                    <LogoComponent />
+                    
                     <Column className={css(styles.menuItemList)}>
                         <MenuItemComponent
                             title="Overview"
@@ -175,7 +166,7 @@ function SidebarComponent({ onChange, selectedItem }) {
                         />
                     </Column>
                 </Column>
-                {isMobile && expanded && (
+                {expanded && (
                     <div
                         className={css(styles.outsideLayer)}
                         onClick={toggleMenu}
